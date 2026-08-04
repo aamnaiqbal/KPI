@@ -38,10 +38,7 @@ class KPILine(models.Model):
         default=0,
     )
 
-    change = fields.Integer(
-        string="Change",
-        default=0,
-    )
+    
 
     score = fields.Integer(
         string="Score",

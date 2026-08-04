@@ -15,7 +15,15 @@ class KPI(models.Model):
         string="Team",
     )
 
+    member_ids = fields.Many2many(
+        "res.users",
+        related="team_id.member_ids",
+        string="Members",
+        readonly=True,
+    )
+
     from_date = fields.Date(string="Date", default=fields.Date.today)
+    to_date = fields.Date(string="Date", default=fields.Date.today)
 
     line_ids = fields.One2many(
         "kpi.kpi.line",

@@ -10,8 +10,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/kpi_view.xml',
-        'views/parameter_master_setup.xml',
-        'views/crm_team_view.xml',
+        'views/parameter_master_setup.xml'
     ],
     'assets': {
     },

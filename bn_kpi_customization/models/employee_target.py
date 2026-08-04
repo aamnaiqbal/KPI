@@ -30,11 +30,7 @@ class EmployeeTarget(models.Model):
 
     value = fields.Float()
 
-    change = fields.Integer(
-        string="Change",
-        default=0,
-    )
-
+    
     def write(self, vals):
         res = super().write(vals)
 
