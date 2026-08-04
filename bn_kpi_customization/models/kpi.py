@@ -22,8 +22,8 @@ class KPI(models.Model):
         readonly=True,
     )
 
-    from_date = fields.Date(string="Date", default=fields.Date.today)
-    to_date = fields.Date(string="Date", default=fields.Date.today)
+    from_date = fields.Date(string="From Date", default=fields.Date.today)
+    to_date = fields.Date(string="To Date")
 
     line_ids = fields.One2many(
         "kpi.kpi.line",
