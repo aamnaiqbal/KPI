@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="parameter_master_setup_view_tree" model="ir.ui.view">
+        <field name="name">parameter.master.setup.view.tree</field>
+        <field name="model">parameter.master.setup</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name" />
+                <field name="type"/>
+                <field name="model_id"
+                    invisible="type != 'auto'"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="parameter_master_setup_action" model="ir.actions.act_window">
+        <field name="name">KPI Parameter</field>
+        <field name="res_model">parameter.master.setup</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Let's setup a parameter..
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem
+        id="kpi_configuration_menu"
+        name="Configuration"
+        parent="menu_root_kpi"
+        sequence="150"/>
+
+    <menuitem
+        id="parameter_master_setup_menu"
+        name="KPI Parameter"
+        action="parameter_master_setup_action"
+        parent="kpi_configuration_menu"
+        sequence="10"/>
+        	
+
+</odoo>

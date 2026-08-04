@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_parameter_master_setup,access.parameter.master.setup,model_parameter_master_setup,,1,1,1,1
+access_kpi_kpi,access.kpi.kpi,model_kpi_kpi,,1,1,1,1
+access_kpi_kpi_line,access.kpi.kpi.line,model_kpi_kpi_line,,1,1,1,1
+access_employee_target,access.employee.target,model_employee_target,,1,1,1,1
