@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from datetime import date
+from datetime import date, datetime, time
 from dateutil.relativedelta import relativedelta
 
 class EmployeeTarget(models.Model):
@@ -35,7 +35,10 @@ class EmployeeTarget(models.Model):
 
     value = fields.Integer(string="Current Target")
     
-    achieved = fields.Integer(string="Current Actual")
+    achieved = fields.Float(
+        string="Current Actual", 
+        compute="_compute_achieved", 
+        store=True)
     current_achievement = fields.Float(
         string="Current Achievement (%)",
         compute="_compute_current_progress",
@@ -52,6 +55,66 @@ class EmployeeTarget(models.Model):
         compute="_compute_current_progress",
         store=True,
     )
+
+    @api.depends(
+    "parameter_id",
+    "parameter_id.type",
+    "parameter_id.model_id",
+    "parameter_id.calculation",
+    "parameter_id.field_value",
+    "employee_id",
+    "kpi_id.from_date",
+    "kpi_id.to_date",
+)
+    def _compute_achieved(self):
+        for rec in self:
+            rec.achieved = 0.0
+
+            if (
+                rec.parameter_type != "auto"
+                or not rec.parameter_id.model_id
+            ):
+                continue
+
+            Model = self.env[rec.parameter_id.model_id.model]
+
+            domain = [
+                ("create_uid", "=", rec.employee_id.id),
+            ]
+
+            if rec.kpi_id.from_date:
+                domain.append((
+                    "create_date",
+                    ">=",
+                    datetime.combine(rec.kpi_id.from_date, time.min),
+                ))
+
+            if rec.kpi_id.to_date:
+                domain.append((
+                    "create_date",
+                    "<=",
+                    datetime.combine(rec.kpi_id.to_date, time.max),
+                ))
+
+            if rec.parameter_id.calculation == "count":
+                rec.achieved = Model.search_count(domain)
+
+            elif (
+                rec.parameter_id.calculation == "sum"
+                and rec.parameter_id.field_value
+            ):
+                field_name = rec.parameter_id.field_value.name
+
+                result = Model.read_group(
+                    domain,
+                    [f"{field_name}:sum"],
+                    [],
+                )
+
+                if result:
+                    rec.achieved = result[0].get(field_name, 0.0) or 0.0
+
+
 
     @api.depends("value", "achieved")
     def _compute_current_progress(self):

@@ -22,3 +22,14 @@ class ParameterMasterSetup(models.Model):
         string="Model",
         help="Select the Odoo model to fetch data from.",
     )
+
+    calculation = fields.Selection([
+        ("count", "Count"),
+        ("sum", "Sum"),
+    ])
+
+    field_value = fields.Many2one(
+        "ir.model.fields",
+        string="Value Field",
+        domain="[('model_id', '=', model_id)]"
+    )

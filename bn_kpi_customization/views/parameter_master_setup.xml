@@ -9,7 +9,10 @@
                 <field name="name" />
                 <field name="type"/>
                 <field name="model_id"
-                    invisible="type != 'auto'"/>
+                    required="type == 'auto'"
+                    readonly="type != 'auto'"/>
+                <field name="calculation" readonly="type != 'auto'" required="type == 'auto'"/>
+                <field name="field_value" required="calculation == 'sum'" readonly="calculation == 'count'" />
             </list>
         </field>
     </record>
