@@ -34,7 +34,7 @@ class KPILine(models.Model):
     )
 
     value = fields.Integer(
-        string="Value",
+        string="Target",
         default=0,
     )
 

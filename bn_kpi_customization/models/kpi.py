@@ -25,6 +25,8 @@ class KPI(models.Model):
     from_date = fields.Date(string="From Date", default=fields.Date.today)
     to_date = fields.Date(string="To Date")
 
+    code = fields.Char(string="Code")
+
     line_ids = fields.One2many(
         "kpi.kpi.line",
         "kpi_id",

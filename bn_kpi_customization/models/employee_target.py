@@ -27,8 +27,13 @@ class EmployeeTarget(models.Model):
         "parameter.master.setup",
         required=True,
     )
+    parameter_type = fields.Selection(
+        related="parameter_id.type",
+        store=True,
+        readonly=True,
+    )
 
-    value = fields.Float()
+    value = fields.Float(string="Employee Target")
 
     
     def write(self, vals):
