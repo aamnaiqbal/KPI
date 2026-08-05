@@ -68,6 +68,11 @@
                                     <field name="parameter_id" readonly="1" force_save="1"/>
                                     <field name="parameter_type" optional="hide" />
                                     <field name="value" force_save="1"/>
+                                    <field name="achieved" force_save="1" readonly="parameter_type == 'auto'"/>
+                                    <field name="current_achievement" readonly="1" force_save="1" widget="progressbar"/>
+                                    <field name="current_state" force_save="1" readonly="1" widget="badge" decoration-danger="current_state == 'danger'"
+                                    decoration-warning="current_state == 'warning'"
+                                    decoration-success="current_state == 'success'"/>
                                     
                                 </list>
                             </field>

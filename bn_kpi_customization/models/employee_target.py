@@ -36,6 +36,39 @@ class EmployeeTarget(models.Model):
     value = fields.Integer(string="Current Target")
     
     achieved = fields.Integer(string="Current Actual")
+    current_achievement = fields.Float(
+        string="Current Achievement (%)",
+        compute="_compute_current_progress",
+        store=True,
+    )
+
+    current_state = fields.Selection(
+        [
+            ("danger", "Danger"),
+            ("warning", "Warning"),
+            ("success", "Success"),
+        ],
+        string="Current State",
+        compute="_compute_current_progress",
+        store=True,
+    )
+
+    @api.depends("value", "achieved")
+    def _compute_current_progress(self):
+        for rec in self:
+            if rec.value > 0:
+                percentage = (rec.achieved / rec.value) * 100
+            else:
+                percentage = 0
+
+            rec.current_achievement = percentage
+
+            if percentage >= 90:
+                rec.current_state = "success"
+            elif percentage >= 50:
+                rec.current_state = "warning"
+            else:
+                rec.current_state = "danger"
 
     
     def write(self, vals):
