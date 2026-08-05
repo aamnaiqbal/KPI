@@ -56,7 +56,7 @@
                                     <field name="parameter_id"/>
                                     <field name="allocation"/>
                                     <field name="value"/>
-                                    <field name="score" readonly="1" force_save="1"/>
+                                    <field name="score" />
                                 </list>
                             </field>
                         </page>
