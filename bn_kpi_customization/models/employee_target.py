@@ -33,9 +33,9 @@ class EmployeeTarget(models.Model):
         readonly=True,
     )
 
-    value = fields.Float(string="Current Target")
+    value = fields.Integer(string="Current Target")
     
-    achieved = fields.Float(string="Current Actual")
+    achieved = fields.Integer(string="Current Actual")
 
     
     def write(self, vals):
