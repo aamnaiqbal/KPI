@@ -34,13 +34,20 @@ class EmployeeTarget(models.Model):
     def write(self, vals):
         res = super().write(vals)
 
+        if self.env.context.get("skip_kpi_sync"):
+            return res
+
+
         if "value" in vals:
             for target in self:
                 if target.kpi_line_id.allocation != "team":
                     continue
 
                 total = sum(target.kpi_line_id.employee_target_ids.mapped("value"))
-                target.kpi_line_id.value = total
+                # target.kpi_line_id.value = total
+                target.kpi_line_id.with_context(skip_employee_sync=True).write({
+                    "value": total,
+                })
 
         return res
 

@@ -155,7 +155,7 @@ class KPI(models.Model):
                     if index < remainder:
                         value += 1
 
-                    target.value = value
+                    target.with_context(skip_kpi_sync=True).value = value
         
     def write(self, vals):
         res = super().write(vals)
