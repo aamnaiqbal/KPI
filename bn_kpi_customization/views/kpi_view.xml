@@ -8,8 +8,8 @@
             <field name="name" />
             <field name="code" />
             <field name="team_id" />
-            <field name="from_date" />
-            <field name="to_date" />
+            <field name="from_date" required="1"/>
+            <field name="to_date" required="1"/>
         </list>
         </field>
     </record>
