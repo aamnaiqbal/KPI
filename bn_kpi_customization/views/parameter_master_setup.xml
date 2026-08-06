@@ -14,6 +14,7 @@
                     readonly="type != 'auto'"/>
                 <field name="calculation" readonly="type != 'auto'" required="type == 'auto'" />
                 <field name="field_value" required="calculation == 'sum'" readonly="calculation == 'count'"  options="{'no_create': True}"/>
+                <field name="domain" />
             </list>
         </field>
     </record>

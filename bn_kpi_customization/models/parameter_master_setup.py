@@ -33,3 +33,12 @@ class ParameterMasterSetup(models.Model):
         string="Value Field",
         domain="[('model_id', '=', model_id)]"
     )
+
+    domain = fields.Text(
+        string="Domain",
+        help="Write a complete Odoo domain. Example:\n"
+             "[('create_uid','=',rec.employee_id.id),"
+             "('create_date','>=',datetime.combine(rec.kpi_id.from_date,time.min)),"
+             "('create_date','<=',datetime.combine(rec.kpi_id.to_date,time.max)),"
+             "('state','=','sale')]"
+    )
