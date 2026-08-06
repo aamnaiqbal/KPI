@@ -46,6 +46,12 @@ class EmployeeTarget(models.Model):
         store=True,
     )
 
+    current_score = fields.Integer(
+        string="Current Score",
+        compute="_compute_current_progress",
+        store=True,
+    )
+
     current_state = fields.Selection(
         [
             ("danger", "Danger"),
@@ -118,7 +124,7 @@ class EmployeeTarget(models.Model):
                 rec.achieved = result and result[0].get(field_name, 0.0) or 0.0
 
 
-    @api.depends("value", "achieved")
+    @api.depends("value", "achieved", "kpi_line_id.score")
     def _compute_current_progress(self):
         for rec in self:
             if rec.value > 0:
@@ -126,8 +132,13 @@ class EmployeeTarget(models.Model):
             else:
                 percentage = 0
 
-            rec.current_achievement = percentage
 
+            # Cap at 100%
+            percentage = min(percentage, 100)
+
+            rec.current_score = int(
+                round((percentage / 100) * rec.kpi_line_id.score)
+            )
             if percentage >= 90:
                 rec.current_state = "success"
             elif percentage >= 50:

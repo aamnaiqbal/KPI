@@ -73,6 +73,7 @@
                                     <field name="current_state" force_save="1" readonly="1" widget="badge" decoration-danger="current_state == 'danger'"
                                     decoration-warning="current_state == 'warning'"
                                     decoration-success="current_state == 'success'"/>
+                                    <field name="current_score" readonly="1" force_save="1" />
                                     
                                 </list>
                             </field>
