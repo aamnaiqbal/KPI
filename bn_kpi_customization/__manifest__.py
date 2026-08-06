@@ -6,7 +6,7 @@
     'website': 'http://bytesnode.com',
     'license': 'LGPL-3',
     'category': 'BytesNode',
-    'depends': ['base', 'crm'],
+    'depends': ['base', 'crm', 'sale_management', 'contacts', 'account', 'hr_attendance'],
     'data': [
         'security/ir.model.access.csv',
         'views/kpi_view.xml',
