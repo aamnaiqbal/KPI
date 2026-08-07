@@ -93,7 +93,7 @@
     </record>
 
     <record id="kpi_action" model="ir.actions.act_window">
-        <field name="name">KPI</field>
+        <field name="name">KPI Definations</field>
         <field name="res_model">kpi.kpi</field>
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
