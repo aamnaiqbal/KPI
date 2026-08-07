@@ -33,6 +33,18 @@ class EmployeeTarget(models.Model):
         store=True,
         readonly=True,
     )
+    kpi_name = fields.Char(
+        related="kpi_id.name",
+        string="Name",
+        store=True,
+        readonly=True,
+        )
+    kpi_code = fields.Char(
+        related="kpi_id.code",
+        string="Code",
+        store=True,
+        readonly=True, 
+        )
 
     value = fields.Integer(string="Current Target")
     
@@ -47,7 +59,7 @@ class EmployeeTarget(models.Model):
     )
 
     current_score = fields.Integer(
-        string="Current Score",
+        string="Score",
         compute="_compute_current_progress",
         store=True,
     )
