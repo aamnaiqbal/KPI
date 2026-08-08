@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <menuitem id="menu_root_kpi"
-              name="KPI"
-              action="kpi_action"/>
+    
 
     <menuitem id="menu_kpi_dashboard"
               name="Dashboard"
