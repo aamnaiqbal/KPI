@@ -14,6 +14,7 @@
         'views/parameter_master_setup.xml',
         'views/employee_target.xml',
     ],
+    'images': ['static/description/icon.png'],
     'auto_install': False,
     'application': True,
 }
