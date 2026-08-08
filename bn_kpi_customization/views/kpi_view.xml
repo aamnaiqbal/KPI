@@ -107,7 +107,7 @@
         id="menu_root_kpi"
         name="KPI"
         action="kpi_action"
-        web_icon = "bn_sale_kpi_customization,static/description/icon.png" />
+        web_icon = "bn_kpi_customization,static/description/icon.png" />
 
     <menuitem
         id="menu_kpi_kpi"
